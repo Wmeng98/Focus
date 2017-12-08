@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+  "name": "Focus",
+  "version": "1.0",
+  "description": "AngularJS App to help you Focus by blocking user-specified websites. Referenced IBM Gawkblocker from developerWorks",
+  "short_name"      : "ng-Focus",
+  "options_page": "options.html",
+  "browser_action": {
+    "default_icon": "images/Focus.png",
+    "default_title": "Focus",
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "images/Focus16.png",
+    "48": "images/Focus48.png",
+    "128": "images/Focus128.png"
+  },
+  "permissions": ["tabs","debugger","storage"],
+  "content_security_policy": "script-src 'self' 'unsafe-eval' https://ssl.google-analytics.com; object-src 'self'"
+}

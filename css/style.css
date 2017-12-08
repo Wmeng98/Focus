@@ -1,0 +1,121 @@
+* {
+  font-family: Helvetica;
+}
+
+body {
+    width: 500px;
+}
+
+/*optionss.html css*/
+.option {
+    padding-top: 5%;
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    font-family: 'Helvetica'
+}
+.sky {
+  color: skyblue;
+}
+/**/
+
+
+.bodymod {
+}
+
+.ptext {
+  font-style: italic;
+  font-weight: bold;
+  color: skyblue;
+}
+
+.btn-default {
+  background-color: rgb(208, 252, 201);
+  color: darkblue;
+  border: none;
+}
+
+.btn-default:hover {
+  background-color: lightblue;
+  color: rgb(208, 252, 201);
+  border: none;
+}
+
+.bordermod {
+  border: 3px solid white;
+  border-radius: 15%;
+  background-color: rgba(20, 33, 73, 0.5);
+}
+
+/* CSS for remove buttons*/
+.btn-remove-todo {
+  color: skyblue;
+  margin-right: 1%;
+}
+todo.content:hover {
+  color: rgba(20, 33, 73, 0.1);
+}
+
+/**/
+.focus {
+  text-align: center;
+  font-weight: bold;
+  color: lightblue;
+}
+
+.todo-item .btn-input {
+    display:none;
+}
+
+.todo-item:hover .btn-input {
+    display: block;
+}
+
+.todo-item .todo-content {
+    font-weight: bold;
+}
+.todo-item.completed .todo-content {
+    color: rgba(20, 33, 73, 0.05);
+}
+.todo-item.completed .btn-input {
+    display: block;
+}
+
+#todo-list {
+    margin-bottom: 10px;
+}
+
+#btn-remove-all {
+    margin-bottom: 10px;
+}
+
+/* more options.css in order to style the clear blocked sites button*/
+.clear {
+  text-align: center;
+  width: 5%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+
+.clear-button {
+  margin-top: 3%;
+  background-color: limegreen;
+  border-radius: 30%;
+  outline: none;
+  font-weight: bold;
+  color: red;
+}
+
+.clear-text {
+  position: relative;
+}
+
+@media (max-width: 900px) {
+  .clear {
+    width: 10%;
+    font-size: 0.9vw;
+  }
+}

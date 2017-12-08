@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app='focus-app'>
+<head>
+    <title>Angular Todo Chrome Extension</title>
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+<body ng-controller='todoCtrl'>
+      <div class="modal-content bodymod">
+        <div class="modal-header bordermod">
+          <h3 class="focus" id="test" style="margin-top: 5px;">Let's Focus Today!</h3>
+        </div>
+        <div class="modal-body bordermod">
+          <form id='todo-form' ng-submit='addToList()'>
+            <div class="form-group">
+              <input type='text' id='new-todo' ng-model='newContent' class="form-control" placeholder="What's your focus for today?"/>
+            </div>
+          </form>
+          <p class="ptext" style="text-align: right;">Focus: to go...</p>
+          <p class="ptext" style="text-align: right; padding-right: 10px;" id="count">{{ (todoList | filter: {completed:false}).length}}</p>
+          <!-- Actual to do list-->
+          <div class='row' id="todo-list">
+              <div class='todo-item col-md-12' ng-repeat='todo in todoList track by todo.id| orderBy: createdAt' ng-class='{completed: todo.completed}'>
+                  <a class='btn-remove-todo pull-left' ng-click='removeFromList(todo)'><i class='glyphicon glyphicon-remove'></i> </a>
+                  <span class='todo-content'>{{todo.content}}</span>
+                  <input class="btn-input pull-right" type='checkbox' id="checkbox" ng-model='todo.completed' ng-click='toggleCompleted()'/>
+              </div>
+          </div>
+        </div>
+      <div class="modal-footer bordermod">
+        <div class="row">
+          <div class="col-md-6">
+            <a href="chrome-extension://............/options.html" target="_blank"><button class="btn btn-info pull-left" style="font-weight: bold;">Options</button></a>
+          </div>
+          <div class="col-md-6">
+            <div id='toolbar'>
+                <a id="btn-remove-all" ng-click='removeAllFromList()' class='btn btn-small btn-default pull-right' ng-show="todoList.length > 0">
+                    <i class="glyphicon glyphicon-remove"></i>
+                    Reset todoList
+                  </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- all .min.js files required and our own personal app JS -->
+  <script type="text/javascript" src="lib/jquery/jquery-2.1.3.min.js"></script>
+  <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="lib/angular/angular.js"></script>
+  <script type="text/javascript" src="app/app.js"></script>
+  <script type="text/javascript" src="app/clear.js"></script>
+  <script type="text/javascript" src="app/todoCtrl.js"></script>
+
+  <script type="text/javascript" src="app/todoStorage.js"></script>
+</body>
+</html>
