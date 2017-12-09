@@ -1,180 +1,201 @@
 
-$(document).ready( function () {
 
 
-  //Storage SM
-  //blocklist
-  //globally declared SM and PB objects
-  var SM = (function () {
-      // first clear local storage
+$(document).ready(function () {
 
-      var my = {};
+var blocklist = ["reddit.com", "facebook.com", "tumblr.com", "twitter.com", "youtube.com", "distractify.com", "9gag.com", "4chan.org", "amazon.com", "netflix.com", "imgur.com"];
+var reference = ["reddit.com", "facebook.com", "tumblr.com", "twitter.com", "youtube.com", "distractify.com", "9gag.com", "4chan.org", "amazon.com", "netflix.com", "imgur.com"];
 
-      my.get = function (key) {
-          return localStorage.getItem(key);
-      }
-      my.put = function (key, value) {
-          return localStorage.setItem(key, value);
-      }
-      my.delete = function (key) {
-          return localStorage.removeItem(key);
-      }
+function showList () {
+  var i = 0;
+  for (i; i < blocklist.length; i++) {
+      $("#blocklist").append("<div class='togglelink' id='site-"+ i +"'>" + blocklist[i] + "</div>");
+  }
+}
 
-      return my;
-
-  }());
-
-  //global variable to mutate to determine current # of blocked blockedSites
-
-
-  var PB = (function (SM) {
-      var my = {};
+// initial view
+showList();
 
 
 
-      my.getBSites = function () {
-          return JSON.parse(SM.get("blocklist"));
-      }
+// option clear all from list and add back functions
+$("#site-0").toggle(
+    function() {
+      blocklist[0] = "null";
+      $("#site-0").css({"text-decoration": "line-through"})
+    },
 
-      my.setLOTR = function (value) {
-          var prot = /^http|chrome-extension/i;
-          if (value.match(prot)) {
-              SM.put("block", value);
-          } else {
-              SM.put("block", "http://" + value);
-          }
-          return SM.get("block");
-      }
-
-      my.getLOTR = function () {
-          return SM.get("block");
-      }
-
-      my.addBSite = function (site) {
-        if((site.substr(site.length - 4) === ".com")||
-        (site.substr(site.length - 4) === ".org")||
-        (site.substr(site.length - 4) === ".net")||
-        (site.substr(site.length - 4) === ".int")||
-        (site.substr(site.length - 4) === ".edu")||
-        (site.substr(site.length - 4) === ".gov")||
-        (site.substr(site.length - 4) === ".mil") && (site != "chrome://extensions/")) {
-
-
-          my.blockedSites = JSON.parse(SM.get("blocklist"));
-          console.log(my.blockedSites);
-          my.blockedSites[site] = "success";
-          console.log(my.blockedSites);
-          SM.put("blocklist", JSON.stringify(my.blockedSites));
-        }
-      }
-
-      my.removeBSite = function (site) {
-          my.blockedSites = JSON.parse(SM.get("blocklist"));
-          delete my.blockedSites[site];
-          SM.put("blocklist", JSON.stringify(my.blockedSites));
-      }
-
-      return my;
-  }(SM));
-
-
-
-// options js
-
-
-    $("#blockbutton").click(function () {
-        PB.addBSite($("#blacklist").val());
-
-        showBList();
+    function() {
+      blocklist[0] = "reddit.com";
+      $("#site-0").css({"text-decoration": "none"})
     });
-    if (PB.getLOTR() != chrome.extension.getURL("block.html")) {
-        $("#watchthatinstead").text(PB.getLOTR());
+
+$("#site-1").toggle(
+  function() {
+    blocklist[1] = "null";
+    $("#site-1").css({"text-decoration": "line-through"})
+  },
+
+  function() {
+    blocklist[1] = "facebook.com";
+    $("#site-1").css({"text-decoration": "none"})
+  });
+
+$("#site-2").toggle(
+  function() {
+    blocklist[2] = "null";
+    $("#site-2").css({"text-decoration": "line-through"})
+  },
+
+  function() {
+    blocklist[2] =  "tumblr.com";
+    $("#site-2").css({"text-decoration": "none"})
+  });
+
+
+$("#site-3").toggle(
+  function() {
+    blocklist[3] = "null";
+    $("#site-3").css({"text-decoration": "line-through"})
+  },
+
+  function() {
+    blocklist[3] = "twitter.com";
+    $("#site-3").css({"text-decoration": "none"})
+  });
+
+$("#site-4").toggle(
+  function() {
+    blocklist[4] = "null";
+    $("#site-4").css({"text-decoration": "line-through"})
+  },
+
+  function() {
+    blocklist[4] = "youtube.com";
+    $("#site-4").css({"text-decoration": "none"})
+  });
+
+$("#site-5").toggle(
+  function() {
+    blocklist[5] = "null";
+    $("#site-5").css({"text-decoration": "line-through"})
+  },
+
+function() {
+  blocklist[5] = "distractify.com";
+  $("#site-5").css({"text-decoration": "none"})
+});
+
+$("#site-6").toggle(
+  function() {
+    blocklist[6] = "null";
+    $("#site-6").css({"text-decoration": "line-through"})
+  },
+
+  function() {
+    blocklist[6] = "9gag.com";
+    $("#site-6").css({"text-decoration": "none"})
+  });
+
+$("#site-7").toggle(
+  function() {
+    blocklist[7] = "null";
+    $("#site-7").css({"text-decoration": "line-through"})
+  },
+
+  function() {
+    blocklist[7] = "4chan.org";
+    $("#site-7").css({"text-decoration": "none"})
+  });
+
+$("#site-8").toggle(
+  function() {
+    blocklist[8] = "null";
+    $("#site-8").css({"text-decoration": "line-through"})
+  },
+
+function() {
+  blocklist[8] = "amazon.com";
+  $("#site-8").css({"text-decoration": "none"})
+});
+
+$("#site-9").toggle(
+  function() {
+    blocklist[9] = "null";
+    $("#site-9").css({"text-decoration": "line-through"})
+  },
+
+function() {
+  blocklist[9] = "netflix.com";
+  $("#site-9").css({"text-decoration": "none"})
+});
+
+$("#site-10").toggle(
+  function() {
+    blocklist[10] = "null";
+    $("#site-10").css({"text-decoration": "line-through"})
+  },
+
+function() {
+  blocklist[10] = "imgur.com";
+  $("#site-10").css({"text-decoration": "none"})
+});
+
+// Jquery click action to clear all and add back all blocked sites
+
+$("#click").toggle(
+  function() {
+    for (var i = 0; i < blocklist.length; i++) {
+      blocklist[i] = "null";
+      $("#site-"+i).css({"display" : "none"})
+      document.getElementById("click").innerHTML = "Undo";
     }
-    showBList();
+  },
 
-function showBList () {
-    $("#blocklist").children().remove();
-    var i=1;
-
-
-    $.each(PB.getBSites(), function (index, value) {
-        $("#blocklist").append("<div id='site-"+i+"'>" + index + "</div>");
-        i++;
-    });
-}
-
-// JS function to remove all Blocked sites when all tasks in the todo list have been completed
-// use an event listener to check if key completed has a false value of zero, then execute function...
-
-//remove all blocked sites if reset to do
-
-$("#click").click(function () {
-  $.each(PB.getBSites(), function (index, value) {
-          PB.removeBSite(index);
-          showBList();
-  });
-});
-$("#test").click(function () {
-  $.each(PB.getBSites(), function (index, value) {
-          PB.removeBSite(index);
-          showBList();
-  });
+function() {
+  for (var i = 0; i < blocklist.length; i++) {
+    blocklist[i] = reference[i];
+    $("#site-"+i).css({"display" : "block"})
+    document.getElementById("click").innerHTML = "Clear";
+  }
 });
 
-/*function removeAllSites() {
-  var i = 1;
-  assert("hi");
-  $.each(PB.getBSites(), function (index, value) {
-      $("#unblock-"+i).click(function () {
-          PB.removeBSite(index);
-          showBList();
-      });
-      i++;
-  });
-}
 
-$.each(PB.getBSites(), function (index, value) {
-    $("#blocklist").append("<div id='site-"+i+"'><input type='button' id='unblock-"+i+"' value='REMOVE' /> " + index+"</div>");
-    $("#unblock-"+i).click(function () {
-        PB.removeBSite(index);
-        showBList();
-    });
-    i++;
-});
-*/
-/*$.each(PB.getBSites(), function (index, value) {
-    $("#blocklist").append("<div id='site-"+i+"'><input type='button' id='unblock-"+i+"' value='REMOVE' /> " + index+"</div>");
-    $("#unblock-"+i).click(function () {
-        PB.removeBSite(index);
-        showBList();
-    });
-    i++;
-});*/
 
-//
+
+
+
+
+
+
+
+
 
 
 
 //background js
-    if (!PB.getLOTR()) {
-        PB.setLOTR(chrome.extension.getURL("block.html"));
-    }
+    //console.log(chrome.extension.getURL("block.html"));
+
 
     chrome.tabs.onUpdated.addListener(function(tabId, changedInfo, tab) {
-        for (site in PB.getBSites()) {
-            if (tab.url.match(site)) {
-                chrome.tabs.update(tabId, {"url" : PB.getLOTR()}, function () {});
-            }
+      for (var i = 0; i < blocklist.length; i++) {
+        console.log(tab.url);
+        if (tab.url.match(blocklist[i])) {
+          chrome.tabs.update(tabId, {"url" : chrome.extension.getURL("block.html")}, function () {});
         }
+      }
     });
 
     chrome.tabs.onCreated.addListener(function(tab) {
-        for (site in PB.getBSites()) {
-            if (tab.url.match(site)) {
-                chrome.tabs.update(tab.id, {"url" : PB.getLOTR()}, function () {});
-            }
+      for (var i = 0; i < blocklist.length; i++) {
+        console.log(tab.url);
+        if (tab.url.match(blocklist[i])) {
+          chrome.tabs.update(tabId, {"url" : chrome.extension.getURL("block.html")}, function () {});
         }
+      }
     });
+
+
 
 
 });

@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Focus",
   "version": "1.0",
-  "description": "AngularJS App to help you Focus by blocking user-specified websites. Referenced IBM Gawkblocker from developerWorks",
+  "description": "AngularJS App to help you Focus by blockinga variety of distracting websites. Referenced IBM Gawkblocker from developerWorks",
   "short_name"      : "ng-Focus",
   "options_page": "options.html",
   "browser_action": {

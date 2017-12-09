@@ -6,6 +6,11 @@ $(document).ready(function () {
 
 
 
+document.getElementById("options-btn").addEventListener("click", function () {
+  chrome.runtime.openOptionsPage();
+});
+
+
 
 document.addEventListener('keyup', function (e) {
   if (e.keyCode === 13) {
