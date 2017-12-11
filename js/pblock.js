@@ -1,11 +1,9 @@
-
-
-
 $(document).ready(function () {
 
 var blocklist = ["reddit.com", "facebook.com", "tumblr.com", "twitter.com", "youtube.com", "distractify.com", "9gag.com", "4chan.org", "amazon.com", "netflix.com", "imgur.com"];
-var reference = ["reddit.com", "facebook.com", "tumblr.com", "twitter.com", "youtube.com", "distractify.com", "9gag.com", "4chan.org", "amazon.com", "netflix.com", "imgur.com"];
+var blocksite = ["reddit", "facebook", "tumblr", "twitter", "youtube", "distractify", "9gag", "4chan", "amazon", "netflix", "imgur"];
 
+// bug fix is to store in local storage key url and value array of blocked site domains to be more user-agent friendly...
 function showList () {
   var i = 0;
   for (i; i < blocklist.length; i++) {
@@ -21,123 +19,123 @@ showList();
 // option clear all from list and add back functions
 $("#site-0").toggle(
     function() {
-      blocklist[0] = "null";
+      localStorage.removeItem("reddit");
       $("#site-0").css({"text-decoration": "line-through"})
     },
 
     function() {
-      blocklist[0] = "reddit.com";
+      localStorage.setItem('reddit', 'reddit.com');
       $("#site-0").css({"text-decoration": "none"})
     });
 
 $("#site-1").toggle(
   function() {
-    blocklist[1] = "null";
+    localStorage.removeItem("facebook");
     $("#site-1").css({"text-decoration": "line-through"})
   },
 
   function() {
-    blocklist[1] = "facebook.com";
+    localStorage.setItem('facebook', 'facebook.com');
     $("#site-1").css({"text-decoration": "none"})
   });
 
 $("#site-2").toggle(
   function() {
-    blocklist[2] = "null";
+    localStorage.removeItem("tumblr");
     $("#site-2").css({"text-decoration": "line-through"})
   },
 
   function() {
-    blocklist[2] =  "tumblr.com";
+    localStorage.setItem('tumblr', 'tumblr.com');
     $("#site-2").css({"text-decoration": "none"})
   });
 
 
 $("#site-3").toggle(
   function() {
-    blocklist[3] = "null";
+    localStorage.removeItem("twitter");
     $("#site-3").css({"text-decoration": "line-through"})
   },
 
   function() {
-    blocklist[3] = "twitter.com";
+    localStorage.setItem('twitter', 'twitter.com');
     $("#site-3").css({"text-decoration": "none"})
   });
 
 $("#site-4").toggle(
   function() {
-    blocklist[4] = "null";
+    localStorage.removeItem("youtube");
     $("#site-4").css({"text-decoration": "line-through"})
   },
 
   function() {
-    blocklist[4] = "youtube.com";
+    localStorage.setItem('youtube', 'youtube.com');
     $("#site-4").css({"text-decoration": "none"})
   });
 
 $("#site-5").toggle(
   function() {
-    blocklist[5] = "null";
+    localStorage.removeItem("distractify");
     $("#site-5").css({"text-decoration": "line-through"})
   },
 
 function() {
-  blocklist[5] = "distractify.com";
+  localStorage.setItem('distractify', 'distractify.com');
   $("#site-5").css({"text-decoration": "none"})
 });
 
 $("#site-6").toggle(
   function() {
-    blocklist[6] = "null";
+    localStorage.removeItem("9gag");
     $("#site-6").css({"text-decoration": "line-through"})
   },
 
   function() {
-    blocklist[6] = "9gag.com";
+    localStorage.setItem('9gag', '9gag.com');
     $("#site-6").css({"text-decoration": "none"})
   });
 
 $("#site-7").toggle(
   function() {
-    blocklist[7] = "null";
+    localStorage.removeItem("4chan");
     $("#site-7").css({"text-decoration": "line-through"})
   },
 
   function() {
-    blocklist[7] = "4chan.org";
+    localStorage.setItem('4chan', '4chan.com');
     $("#site-7").css({"text-decoration": "none"})
   });
 
 $("#site-8").toggle(
   function() {
-    blocklist[8] = "null";
+    localStorage.removeItem("amazon");
     $("#site-8").css({"text-decoration": "line-through"})
   },
 
 function() {
-  blocklist[8] = "amazon.com";
+  localStorage.setItem('amazon', 'amazon.com');
   $("#site-8").css({"text-decoration": "none"})
 });
 
 $("#site-9").toggle(
   function() {
-    blocklist[9] = "null";
+    localStorage.removeItem("netflix");
     $("#site-9").css({"text-decoration": "line-through"})
   },
 
 function() {
-  blocklist[9] = "netflix.com";
+  localStorage.setItem('netflix', 'netflix.com');
   $("#site-9").css({"text-decoration": "none"})
 });
 
 $("#site-10").toggle(
   function() {
-    blocklist[10] = "null";
+    localStorage.removeItem("imgur");
     $("#site-10").css({"text-decoration": "line-through"})
   },
 
 function() {
-  blocklist[10] = "imgur.com";
+  localStorage.setItem('imgur', 'imgur.com');
   $("#site-10").css({"text-decoration": "none"})
 });
 
@@ -145,55 +143,24 @@ function() {
 
 $("#click").toggle(
   function() {
-    for (var i = 0; i < blocklist.length; i++) {
-      blocklist[i] = "null";
-      $("#site-"+i).css({"display" : "none"})
-      document.getElementById("click").innerHTML = "Undo";
+    for (var i = 0; i < blocklist.length; i++)   {
+        localStorage.removeItem(blocksite[i]);
+        $("#site-"+i).css({"display" : "none"});
+        document.getElementById("click").innerHTML = "Undo";
     }
   },
 
 function() {
   for (var i = 0; i < blocklist.length; i++) {
-    blocklist[i] = reference[i];
-    $("#site-"+i).css({"display" : "block"})
+
+    localStorage.setItem(blocksite[i], blocklist[i]);
+
+    $("#site-"+i).css({"display" : "block"});
     document.getElementById("click").innerHTML = "Clear";
   }
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-//background js
-    //console.log(chrome.extension.getURL("block.html"));
-
-
-    chrome.tabs.onUpdated.addListener(function(tabId, changedInfo, tab) {
-      for (var i = 0; i < blocklist.length; i++) {
-        console.log(tab.url);
-        if (tab.url.match(blocklist[i])) {
-          chrome.tabs.update(tabId, {"url" : chrome.extension.getURL("block.html")}, function () {});
-        }
-      }
-    });
-
-    chrome.tabs.onCreated.addListener(function(tab) {
-      for (var i = 0; i < blocklist.length; i++) {
-        console.log(tab.url);
-        if (tab.url.match(blocklist[i])) {
-          chrome.tabs.update(tabId, {"url" : chrome.extension.getURL("block.html")}, function () {});
-        }
-      }
-    });
 
 
 
