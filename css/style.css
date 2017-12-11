@@ -90,12 +90,21 @@ todo.content:hover {
 }
 
 /* more options.css in order to style the clear blocked sites button*/
-.clear {
+.clearR {
   text-align: center;
   width: 5%;
   position: fixed;
   bottom: 0;
   right: 0;
+  cursor: pointer;
+}
+
+.clearL {
+  text-align: center;
+  width: 5%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
   cursor: pointer;
 }
 
@@ -128,10 +137,12 @@ todo.content:hover {
 
 
 
-
-
-@media (max-width: 900px) {
-  .clear {
+@media (max-width: 1300px) {
+  .clearR {
+    width: 10%;
+    font-size: 0.9vw;
+  }
+  .clearL {
     width: 10%;
     font-size: 0.9vw;
   }

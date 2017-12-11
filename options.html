@@ -4,11 +4,12 @@
         <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
     <body style="width: 100%;" class="option">
-      <h3 class="sky">Manage which sites you want blocked/unblocked. Remember to stay F O C U S E D!</h3>
-      <div>
-        <h4 class="sky">Currently blocked sites (toggle links to unblock)</h4>
+      <h3 class="sky">Enter which sites you want blocked. Remember to stay F O C U S E D! (Note: top-level domains only e.g. .com, .org...)</h3>
+      <p><input id="blacklist" /><input type="button" id="blockbutton" value="Block Site"/></p>
+        <h4 class="sky">Currently blocked sites</h4>
         <p id="blocklist"></p>
-        <button type="button" id="click" class="clear clear-button"><span class="clear-text">Clear</span></button>
+        <button type="button" id="click" class="clearR clear-button"><span class="clear-text">Clear</span></button>
+        <button type="button" id="clickDefault" class="clearL clear-button"><span class="clear-text">Default Block</span></button>
       </div>
 
 
